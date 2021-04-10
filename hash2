@@ -1,0 +1,51 @@
+n, q = map(int, input().split())
+a = [0] * n
+for i in range(n):
+    a[i] = [None]
+for i in range(q):
+    zapros = list(map(str, input().split()))
+    if zapros[0] == "add":
+        est = False
+        for i in range(len(a)):
+            if zapros[1] == a[i][0]:
+                est = True
+                g = i
+                break
+        if est:
+            print(g)
+        else:
+            j = 1
+            for i in range(int(zapros[1]) % n, len(a)):
+                if a[i] == [None]:
+                    a[i] = [zapros[1], int(zapros[1]) % n]
+                    print(i)
+                    j = 0
+                    break
+            if j == 1:
+                for i in range(0, int(zapros[1])):
+                    if a[i] == [None]:
+                        a[i] = [zapros[1], int(zapros[1]) % n]
+                        print(i)
+                        break
+    if zapros[0] == "find":
+        est = False
+        for i in range(len(a)):
+            if a[i][0] == zapros[1]:
+                est = True
+                break
+        if est:
+            print(1)
+        else:
+            print(0)
+
+    if zapros[0] == "remove":
+        est = False
+        for i in range(len(a)):
+            if a[i][0] == zapros[1]:
+                a[i] = [None]
+                est = True
+                break
+        if est:
+            print(1)
+        else:
+            print(0)
